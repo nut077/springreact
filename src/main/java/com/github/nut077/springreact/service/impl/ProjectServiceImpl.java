@@ -24,6 +24,10 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Project findByProjectIdentifier(String projectIdentifier) {
-        return projectRepository.findByProjectIdentifier(projectIdentifier);
+        Project project = projectRepository.findByProjectIdentifier(projectIdentifier.toUpperCase());
+        if (project == null) {
+            throw new ProjectIdException("Project Id '" + projectIdentifier.toUpperCase() + "' does not exists");
+        }
+        return project;
     }
 }
