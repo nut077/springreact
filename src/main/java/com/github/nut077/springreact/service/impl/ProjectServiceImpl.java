@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 public class ProjectServiceImpl implements ProjectService {
     private ProjectRepository projectRepository;
 
+    @Override
     public Project saveOrUpdateProject(Project project) {
         try {
             project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
@@ -23,6 +24,6 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Project findByProjectIdentifier(String projectIdentifier) {
-        return null;
+        return projectRepository.findByProjectIdentifier(projectIdentifier);
     }
 }
