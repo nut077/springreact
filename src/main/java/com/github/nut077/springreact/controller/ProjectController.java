@@ -3,7 +3,7 @@ package com.github.nut077.springreact.controller;
 import com.github.nut077.springreact.entity.Project;
 import com.github.nut077.springreact.service.MapValidationErrorService;
 import com.github.nut077.springreact.service.ProjectService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -13,10 +13,11 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/project")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ProjectController {
-    private ProjectService projectService;
-    private MapValidationErrorService mapValidationErrorService;
+
+    private final ProjectService projectService;
+    private final MapValidationErrorService mapValidationErrorService;
 
     @PostMapping
     public ResponseEntity<?> createNewProject(@Valid @RequestBody Project project, BindingResult result) {
